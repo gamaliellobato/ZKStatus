@@ -1,0 +1,32 @@
+ 
+<window title="Example for ZK MVVM List Box" width="normal"
+   apply="org.zkoss.bind.BindComposer"
+ viewModel="@id('vm') @init('zkexamples.mvvm.ListBox2')">
+ <label value="You are using: ${desktop.webApp.version}" />
+    <separator></separator>
+ <listbox model="@load(vm.allPersons)" checkmark="true"
+       multiple="true" selectedItem="@bind(vm.selectedPerson)"
+     selectedItems="@bind(vm.selectedPersons)" mold="paging" pageSize="5">
+       <listhead sizable="true">
+         <listheader label="ID" sortDirection="ascending"
+             sort="auto(id)" />
+            <listheader label="Nombre" sort="auto(nombre)" />
+            <listheader label="Email" sort="auto(email)" />
+            <listheader label="Status" sort="auto(status)" />
+       </listhead>
+       <template name="model" var="p1">
+          <listitem>
+               <listcell label="@load(p1.id)" />
+               <listcell label="@load(p1.nombre)" />
+               <listcell label="@load(p1.email)" />
+               <listcell label="@load(p1.status)" />
+          </listitem>
+       </template>
+   </listbox>
+    <button label="Activar"
+     onClick="@command('activar')">
+ 	</button>
+	 <button label="Bloquear"
+	     onClick="@command('bloquear')">
+	 </button>
+</window>
